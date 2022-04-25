@@ -1,0 +1,23 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+
+  # Server
+  config.vm.define "kmaster" do |node|
+  
+    node.vm.box               = "ubuntu/focal64"
+    node.vm.box_check_update  = false
+    node.vm.box_version       = "20211015.0.0"
+    node.vm.hostname          = "kmaster.example.com"
+
+    node.vm.network "private_network", ip: "192.168.2.99"
+  
+    node.vm.provider :virtualbox do |v|
+      v.name    = "kmaster-test"
+      v.memory  = 4096
+      v.cpus    =  2
+    end  
+  end  
+
+end
